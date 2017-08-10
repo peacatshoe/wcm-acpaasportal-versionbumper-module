@@ -7,7 +7,6 @@ var ContentTypeModel = require("app/models/contentType");
 
 var safeLabels = [
 	"product",
-	"product_doc_version",
 	"api",
 ];
 var contentTypes = {};
@@ -54,3 +53,5 @@ module.exports.verifyType = function verifyType(type) {
 		return t.id === type.toString();
 	});
 };
+
+module.exports.toList = toList;
