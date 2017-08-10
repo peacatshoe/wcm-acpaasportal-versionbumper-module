@@ -1,0 +1,45 @@
+<div class="acpaasportalversionbumper-modal u-clear" ng-if="ngDialogData.type.label === 'product'">
+	<field
+		class="u-width-2-6 fl"
+		label="'Major' | translate"
+		name="version-major"
+		type="'number'"
+		model="ngDialogData.versionInfo.major"
+		required="true"
+		placeholder="0"
+	></field>
+	<field
+		class="u-width-2-6 fl"
+		label="'Minor' | translate"
+		name="version-minor"
+		type="'number'"
+		model="ngDialogData.versionInfo.minor"
+		required="true"
+		placeholder="0"
+	></field>
+	<field
+		class="u-width-2-6 fl"
+		label="'Patch' | translate"
+		name="version-patch"
+		type="'number'"
+		model="ngDialogData.versionInfo.patch"
+		required="true"
+		placeholder="0"
+	></field>
+</div>
+
+<div class="u-clear" ng-if="ngDialogData.type.label === 'api'">
+	<field
+		class="u-width-2-6 fl"
+		label="'Version' | translate"
+		name="version"
+		type="'number'"
+		model="ngDialogData.versionInfo.major"
+		required="true"
+		placeholder="0"
+	></field>
+
+<div class="c-buttonGroup">
+	<button ng-click="closeThisDialog()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
+	<button ng-click="confirm()" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
+</div>
