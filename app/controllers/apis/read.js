@@ -1,6 +1,6 @@
 "use strict";
 
-var read = require("./helpers/read");
+var read = require("../helpers/read");
 var contentTypesHelper = require("../../helpers/contentTypes");
 
 module.exports = function(req, res) {

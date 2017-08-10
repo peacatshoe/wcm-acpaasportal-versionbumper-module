@@ -6,7 +6,7 @@ var _ = require("lodash");
 var ContentModel = require("app/models/content");
 
 module.exports = function(contentType) {
-	ContentModel.find({
+	return ContentModel.find({
 		"meta.contentType": contentType,
 		"meta.deleted": false,
 	}, {
