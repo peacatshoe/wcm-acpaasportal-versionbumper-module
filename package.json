@@ -13,6 +13,8 @@
     "wcmModule": {
         "frontend": {
             "dirPath": "public/app/",
+            "assetsDirPath": "public/assets",
+            "cssDirPath": "public/assets/css",
             "moduleConfig": {
                 "translationKey": "Version bumper",
                 "operationType": "versionbumper",
