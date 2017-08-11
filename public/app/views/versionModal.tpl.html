@@ -2,7 +2,7 @@
 	<loader loading-text="{{'Loading.' | translate}}" css="['full', 'relative']"></loader>
 </div>
 
-<div ng-if="!status.loading">
+<div ng-if="!status.loading && versions.length">
 	<field
 		class="u-width-6-6"
 		label="'Label' | translate"
@@ -64,8 +64,14 @@
 		></field>
 	</div>
 
-	<div class="c-buttonGroup">
-		<button ng-click="closeThisDialog()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
-		<button ng-click="confirm()" ng-disabled="!status.valid" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
-	</div>
+</div>
+
+<div ng-if="!status.loading && !versions.length">
+	<p>No versions found for this {{ngDialogData.type.label}}.</p>
+</div>
+
+<div class="c-buttonGroup">
+	<button ng-click="closeThisDialog()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
+	<button ng-if="versions.length" ng-click="bumpVersion()" ng-disabled="!status.valid || status.loading" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
+	<button ng-if="!versions.length" ng-click="newVersion()" class="c-button c-button--error c-button--sm c-button--floatRight" translate>new version</button>
 </div>

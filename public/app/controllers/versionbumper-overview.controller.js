@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.1.controllers")
+	.module("acpaasportalversionbumper_0.0.2.controllers")
 	.controller("acpaasportalversionbumperOverviewController", [
 		"$scope",
 		"$timeout",
@@ -69,12 +69,11 @@ angular
 					sortable: true,
 				}, {
 					columnName: LabelService.getString("Actions"),
-					template: "<a href=\"#\" ng-click=\"$emit('bumpVersion', i)\">" + LabelService.getString("Bump") + "</a>",
+					template: "<a ng-click=\"$emit('bumpVersion', i)\">" + LabelService.getString("Bump") + "</a>",
 				}],
 			};
 
 			function init() {
-				// updateTable();
 				fetchTypes();
 			}
 
@@ -149,9 +148,9 @@ angular
 					type: _.cloneDeep($scope.filters.type),
 					item: _.cloneDeep(item),
 					version: {
-						major: _.get(item, "fields.versionMajor", 0) || _.get(item, "fields.version", 0),
-						minor: _.get(item, "fields.versionMinor", 0),
-						patch: _.get(item, "fields.versionPatch", 0),
+						major: _.get(item, "fields.version", 0),
+						minor: 0,
+						patch: 0,
 					},
 				};
 
@@ -159,8 +158,6 @@ angular
 					templateUrl: acpaasportalversionbumperConfig.modulePath + "views/versionModal.tpl.html",
 					data: modalData,
 					controller: "acpaasportalversionbumperModalController",
-				}).then(function() {
-					acpaasportalversionbumperFactory.bumpVersion(modalData);
 				});
 			}
 
