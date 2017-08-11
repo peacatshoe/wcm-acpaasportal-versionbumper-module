@@ -8,6 +8,7 @@ var ContentTypeModel = require("app/models/contentType");
 var safeLabels = [
 	"product",
 	"api",
+	"product_doc_version",
 ];
 var contentTypes = {};
 
