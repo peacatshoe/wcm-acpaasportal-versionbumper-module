@@ -32,7 +32,14 @@ angular
 					.then(function(response) {
 						return response.data;
 					});
-			}
+			};
+
+			factory.fetchVersionsForProduct = function(product) {
+				return $http.get(api + "/versions/" + product)
+					.then(function(response) {
+						return response.data;
+					});
+			};
 
 			return factory;
 		},
