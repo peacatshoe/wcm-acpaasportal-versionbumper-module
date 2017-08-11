@@ -15,5 +15,9 @@ module.exports = function(app) {
 	app.route(baseUrl + "/types").get(authHelper.prepareMember, contentTypesController.getTypes);
 	app.route(baseUrl + "/products").get(authHelper.prepareMember, productsController.read);
 	app.route(baseUrl + "/versions/:product").get(authHelper.prepareMember, versionsController.read);
+	app.route(baseUrl + "/products/:product/bump").put(authHelper.prepareMember, productsController.bumpVersion);
+	app.route(baseUrl + "/products/:product/new").put(authHelper.prepareMember, productsController.createVersion);
 	app.route(baseUrl + "/apis").get(authHelper.prepareMember, apisController.read);
+	app.route(baseUrl + "/apis/:api/bump").put(authHelper.prepareMember, apisController.bumpVersion);
+	app.route(baseUrl + "/apis/:api/new").put(authHelper.prepareMember, apisController.createVersion);
 };
