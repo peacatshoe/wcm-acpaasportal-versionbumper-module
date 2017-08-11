@@ -38,7 +38,7 @@ angular
 				} else {
 					$scope.ngDialogData.version.major = $scope.ngDialogData.version.major + 1;
 					$scope.minvalue = _.clone($scope.ngDialogData.version);
-					$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.minvalue);
+					$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.versions);
 					$scope.status.loading = false;
 				}
 			}
@@ -60,14 +60,14 @@ angular
 							minor: _.get($scope.minvalue, "minor", 0),
 							patch: _.get($scope.minvalue, "patch", 0),
 						};
-						$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.minvalue);
+						$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.versions);
 						$scope.status.loading = false;
 					});
 			}
 
 			function versionUpdated() {
 				$timeout(function() {
-					$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.minvalue);
+					$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.versions);
 				});
 			}
 

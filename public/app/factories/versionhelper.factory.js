@@ -57,8 +57,8 @@ angular
 				return 0;
 			};
 
-			factory.validateVersion = function(version, minvalue) {
-				return factory.sortVersions(version, minvalue) >= 0;
+			factory.validateVersion = function(version, versions) {
+				return !_.find(versions, version);
 			};
 
 			return factory;
