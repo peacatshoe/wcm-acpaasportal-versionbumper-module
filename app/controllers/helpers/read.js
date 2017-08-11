@@ -5,11 +5,11 @@ var _ = require("lodash");
 
 var ContentModel = require("app/models/content");
 
-module.exports = function(contentType, fields) {
-	return ContentModel.find({
+module.exports = function(contentType, query, fields) {
+	return ContentModel.find(_.extend({
 		"meta.contentType": contentType,
 		"meta.deleted": false,
-	}, _.extend({
+	}, query), _.extend({
 		_id: 0,
 		uuid: 1,
 		"meta.contentType": 1,
