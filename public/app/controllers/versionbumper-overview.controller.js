@@ -9,7 +9,6 @@ angular
 		"acpaasportalversionbumperFactory",
 		"acpaasportalversionbumperConfig",
 		"LabelService",
-		"NotificationService",
 		"DialogService",
 
 		function(
@@ -19,7 +18,6 @@ angular
 			acpaasportalversionbumperFactory,
 			acpaasportalversionbumperConfig,
 			LabelService,
-			NotificationService,
 			DialogService
 		) {
 			$scope.filters = {
@@ -148,19 +146,19 @@ angular
 
 			function bumpVersion(event, item) {
 				var modalData = {
-					type: $scope.filters.type,
-					item: item,
-					versionInfo: {
-						label: _.get(item, "meta.label", ""),
-						major: 0,
-						minor: 0,
-						patch: 1,
+					type: _.cloneDeep($scope.filters.type),
+					item: _.cloneDeep(item),
+					version: {
+						major: _.get(item, "fields.versionMajor", 0) || _.get(item, "fields.version", 0),
+						minor: _.get(item, "fields.versionMinor", 0),
+						patch: _.get(item, "fields.versionPatch", 0),
 					},
 				};
 
 				DialogService.openModal({
 					templateUrl: acpaasportalversionbumperConfig.modulePath + "views/versionModal.tpl.html",
 					data: modalData,
+					controller: "acpaasportalversionbumperModalController",
 				}).then(function() {
 					acpaasportalversionbumperFactory.bumpVersion(modalData);
 				});
