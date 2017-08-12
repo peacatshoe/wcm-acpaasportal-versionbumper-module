@@ -1,12 +1,12 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.2")
+	.module("acpaasportalversionbumper_0.0.4")
 	.provider("acpaasportalversionbumperConfig", [
 		function membersConfig() {
 			this.API = {
 				name: "acpaasportalversionbumper",
-				version: "0.0.2",
+				version: "0.0.4",
 				basePath: "app/modules/",
 			};
 
