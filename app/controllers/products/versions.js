@@ -2,19 +2,13 @@ var _ = require("lodash");
 
 var readOne = require("../helpers/readOne");
 var read = require("../helpers/read");
-var create = require("./create");
+var create = require("../helpers/create");
+var slug = require("../helpers/slug");
 var contentTypesHelper = require("../../helpers/contentTypes");
-
-function formatVersionSlug(versionLabel, activeLanguages) {
-	return activeLanguages.reduce(function(slug, lang) {
-		slug[lang] = _.kebabCase(versionLabel);
-		return slug;
-    }, { multiLanguage: true });
-}
 
 module.exports.bump = function(req, res) {
 	read(contentTypesHelper().product_doc_version, {
-		"fields.product": req.params.product
+		"fields.product": req.params.product,
 	}, true, false).then(function(versions) {
 		var version = _.chain(versions).sortBy(["fields.versionMajor", "fields.versionMinor", "fields.versionPatch"]).last().value();
 
@@ -37,7 +31,7 @@ module.exports.bump = function(req, res) {
 				publishDate: new Date(),
 				published: version.meta.published,
 				status: version.meta.status,
-				slug: formatVersionSlug(versionLabel, version.meta.activeLanguages),
+				slug: slug(versionLabel, version.meta.activeLanguages),
 			},
 		};
 
@@ -74,7 +68,7 @@ module.exports.create = function(req, res) {
 				publishDate: new Date(),
 				published: product.meta.published,
 				status: "DRAFT",
-				slug: formatVersionSlug(versionLabel, product.meta.activeLanguages),
+				slug: slug(versionLabel, product.meta.activeLanguages),
 			},
 		};
 
@@ -87,4 +81,18 @@ module.exports.create = function(req, res) {
 	}, function(err) {
 		res.status(500).json(err);
 	});
-}
+};
+
+module.exports.read = function(req, res) {
+	read(contentTypesHelper().product_doc_version, {
+			"fields.product": req.params.product,
+		}, {
+			"fields.versionMajor": 1,
+			"fields.versionMinor": 1,
+			"fields.versionPatch": 1,
+		}).then(function(versions) {
+			res.status(200).json(versions);
+		}, function(err) {
+			res.status(500).json(err);
+		});
+};
