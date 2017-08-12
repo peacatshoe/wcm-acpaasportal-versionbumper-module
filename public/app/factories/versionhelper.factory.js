@@ -61,6 +61,25 @@ angular
 				return !_.find(versions, version);
 			};
 
+			factory.getValueFromVersions = function(versions, type) {
+				var minvalue = factory.getMinvalueFromVersions(versions);
+				var currVersion = {
+					major: _.get(minvalue, "major", 0),
+					minor: _.get(minvalue, "minor", 0),
+					patch: _.get(minvalue, "patch", 0),
+				};
+
+				if (type.label === "product") {
+					currVersion.patch += 1;
+				}
+
+				if (type.label === "api") {
+					currVersion.major += 1;
+				}
+
+				return currVersion;
+			};
+
 			return factory;
 		},
 	]);
