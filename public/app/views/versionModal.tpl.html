@@ -2,7 +2,7 @@
 	<loader loading-text="{{'Loading.' | translate}}" css="['full', 'relative']"></loader>
 </div>
 
-<div ng-if="!status.loading && versions.length">
+<div ng-if="!status.loading && status.hasVersions">
 	<field
 		class="u-width-6-6"
 		label="'Label' | translate"
@@ -22,7 +22,6 @@
 			type="'number'"
 			model="ngDialogData.version.major"
 			required="true"
-			minvalue="minvalue.major"
 			placeholder="0"
 			on-change="versionUpdated"
 		></field>
@@ -33,7 +32,6 @@
 			type="'number'"
 			model="ngDialogData.version.minor"
 			required="true"
-			minvalue="minvalue.minor"
 			placeholder="0"
 			on-change="versionUpdated"
 		></field>
@@ -44,7 +42,6 @@
 			type="'number'"
 			model="ngDialogData.version.patch"
 			required="true"
-			minvalue="minvalue.patch"
 			placeholder="0"
 			on-change="versionUpdated"
 		></field>
@@ -58,7 +55,6 @@
 			type="'number'"
 			model="ngDialogData.version.major"
 			required="true"
-			minvalue="minvalue.major"
 			placeholder="0"
 			on-change="versionUpdated"
 		></field>
@@ -66,12 +62,12 @@
 
 </div>
 
-<div ng-if="!status.loading && !versions.length">
+<div ng-if="!status.loading && !status.hasVersions">
 	<p>No versions found for this {{ngDialogData.type.label}}.</p>
 </div>
 
 <div class="c-buttonGroup">
 	<button ng-click="closeThisDialog()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
-	<button ng-if="versions.length" ng-click="bumpVersion()" ng-disabled="!status.valid || status.loading" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
-	<button ng-if="!versions.length" ng-click="newVersion()" class="c-button c-button--error c-button--sm c-button--floatRight" translate>new version</button>
+	<button ng-if="status.hasVersions" ng-click="bumpVersion()" ng-disabled="!status.valid || status.loading" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
+	<button ng-if="!status.hasVersions" ng-click="newVersion()" class="c-button c-button--error c-button--sm c-button--floatRight" translate>new version</button>
 </div>
