@@ -6,7 +6,7 @@
 			<div class="c-input_inner has-icon caret-down">
 				<label class="c-label" for="status-${{index}}" translate>Content type</label>
 				<div class="select-wrapper">
-					<select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="filters.type" required="true" ng-options="type as type.label for type in types track by type.value" ng-change="fetchItemsForType(filters.type)" ng-disabled="loading.table">
+					<select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="filters.type" required="true" ng-options="type as type.label for type in types track by type.id" ng-change="fetchItemsForType(filters.type)" ng-disabled="loading.table">
 						<option disabled value="">Choose a content type
 					</select>
 				</div>
