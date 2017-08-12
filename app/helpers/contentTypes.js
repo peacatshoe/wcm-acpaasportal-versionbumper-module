@@ -11,17 +11,7 @@ var safeLabels = [
 	"product_doc_version",
 ];
 var contentTypes = {};
-
-var toList = function(types) {
-	return Object.keys(types).reduce(function(acc, curr) {
-		acc.push({
-			type: curr,
-			id: types[curr],
-		});
-
-		return acc;
-	}, []);
-};
+var list = [];
 
 module.exports = function getContentTypes() {
 	return contentTypes;
@@ -42,6 +32,13 @@ module.exports.reload = function reload() {
 				acc[type.meta.safeLabel] = type._id.toString();
 				return acc;
 			}, {});
+			list = types.map(function(type) {
+				return {
+					id: type._id.toString(),
+					label: type.meta.safeLabel,
+					uuid: type.uuid,
+				};
+			});
 		}, function(err) {
 			throw err;
 		});
@@ -55,4 +52,6 @@ module.exports.verifyType = function verifyType(type) {
 	});
 };
 
-module.exports.toList = toList;
+module.exports.toList = function() {
+	return list;
+};
