@@ -9,7 +9,7 @@ angular
 			factory.parseVersions = function(versions) {
 				return versions.map(function(version) {
 					return {
-						major: _.get(version, "fields.versionMajor", 0),
+						major: _.get(version, "fields.versionMajor", 0) || _.get(version, "fields.version", 0),
 						minor: _.get(version, "fields.versionMinor", 0),
 						patch: _.get(version, "fields.versionPatch", 0),
 					};
