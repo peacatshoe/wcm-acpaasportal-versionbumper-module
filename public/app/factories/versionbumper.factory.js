@@ -33,19 +33,21 @@ angular
 			};
 
 			factory.fetchVersionsForProduct = function(product) {
-				return $http.get(api + "/versions/" + product)
+				return $http.get(api + "/products/" + product + "/versions")
 					.then(handleResponse);
 			};
 
 			factory.bumpVersion = function(data) {
-				return $http.put([api, data.type + "s", data.item, "bump"].join("/"), {
+				return $http.put([api, data.type + "s", data.item.uuid, "bump"].join("/"), {
 					label: data.label,
 					version: data.version,
+					service: _.get(data, "item.fields.service"),
+					organisation: _.get(data, "item.fields.organisation"),
 				}).then(handleResponse);
 			};
 
 			factory.newVersion = function(data) {
-				return $http.put([api, data.type + "s", data.item, "new"].join("/"))
+				return $http.put([api, data.type + "s", data.item.uuid, "new"].join("/"))
 					.then(handleResponse);
 			};
 
