@@ -1,8 +1,7 @@
 var read = require("./read");
-var versionHelper = require("./version");
+var versionsHelper = require("./versions");
 
 module.exports = {
 	read: read,
-	bumpVersion: versionHelper.bump,
-	createVersion: versionHelper.create,
+	versions: versionsHelper,
 };
