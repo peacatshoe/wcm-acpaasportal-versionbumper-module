@@ -6,6 +6,7 @@ angular
 		"$scope",
 		"$timeout",
 		"$state",
+		"$q",
 		"acpaasportalversionbumperFactory",
 		"acpaasportalversionhelperFactory",
 		"NotificationService",
@@ -15,54 +16,45 @@ angular
 			$scope,
 			$timeout,
 			$state,
+			$q,
 			acpaasportalversionbumperFactory,
 			acpaasportalversionhelperFactory,
 			NotificationService,
 			LabelService
 		) {
-			$scope.minvalue = {
-				major: 0,
-				minor: 0,
-				patch: 0,
-			};
 			$scope.status = {
 				loading: true,
 				bumping: false,
 				valid: false,
+				hasVersions: false,
 			};
 			$scope.versions = [];
 
 			function init() {
-				if ($scope.ngDialogData.type.label === "product") {
-					fetchVersions();
-				} else {
-					$scope.ngDialogData.version.major = $scope.ngDialogData.version.major + 1;
-					$scope.minvalue = _.clone($scope.ngDialogData.version);
-					$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.versions);
-					$scope.status.loading = false;
-				}
-			}
-
-			function fetchVersions() {
 				$scope.status.loading = true;
 
-				acpaasportalversionbumperFactory.fetchVersionsForProduct($scope.ngDialogData.item.uuid)
+				fetchVersions($scope.ngDialogData.type)
 					.then(function(versions) {
-						if (!versions.length) {
-							return $scope.status.loading = false;
+						if ($scope.ngDialogData.type.label === "product") {
+							$scope.versions = acpaasportalversionhelperFactory.parseVersions(versions);
+						} else {
+							$scope.versions = [_.cloneDeep($scope.ngDialogData.version)];
 						}
 
-						$scope.versions = acpaasportalversionhelperFactory.parseVersions(versions);
-
-						$scope.minvalue = acpaasportalversionhelperFactory.getMinvalueFromVersions($scope.versions);
-						$scope.ngDialogData.version = {
-							major: _.get($scope.minvalue, "major", 0),
-							minor: _.get($scope.minvalue, "minor", 0),
-							patch: _.get($scope.minvalue, "patch", 0),
-						};
+						$scope.status.hasVersions = $scope.versions.length;
+						$scope.ngDialogData.version = acpaasportalversionhelperFactory.getValueFromVersions($scope.versions, $scope.ngDialogData.type);
 						$scope.status.valid = acpaasportalversionhelperFactory.validateVersion($scope.ngDialogData.version, $scope.versions);
 						$scope.status.loading = false;
 					});
+			}
+
+			function fetchVersions(type) {
+				switch (type.label) {
+					case "product":
+						return acpaasportalversionbumperFactory.fetchVersionsForProduct($scope.ngDialogData.item.uuid);
+					default:
+						return $q.resolve();
+				}
 			}
 
 			function versionUpdated() {
@@ -76,7 +68,7 @@ angular
 
 				acpaasportalversionbumperFactory.newVersion({
 					type: $scope.ngDialogData.type.label,
-					item: $scope.ngDialogData.item.uuid,
+					item: $scope.ngDialogData.item,
 				}).then(function(version) {
 					notify(true);
 					$state.go("pelorus.content.edit", { uuid: version.uuid })
@@ -91,10 +83,10 @@ angular
 
 				acpaasportalversionbumperFactory.bumpVersion({
 					type: $scope.ngDialogData.type.label,
-					item: $scope.ngDialogData.item.uuid,
+					item: $scope.ngDialogData.item,
 					version: $scope.ngDialogData.version,
 					label: $scope.ngDialogData.item.meta.label,
-				}).then(function(version) {
+				}).then(function() {
 					notify(true);
 					$scope.confirm();
 				}, handleError);
@@ -111,7 +103,7 @@ angular
 				);
 			}
 
-			function handleError(err) {
+			function handleError() {
 				$scope.status.loading = false;
 				notify(false);
 			}
