@@ -81,12 +81,7 @@ angular
 				$scope.loading.types = true;
 				acpaasportalversionbumperFactory.fetchTypes()
 					.then(function(types) {
-						$scope.types = types.map(function(type) {
-							return {
-								label: type.type,
-								value: type.id,
-							};
-						});
+						$scope.types = types;
 						$scope.loading.types = false;
 					});
 			}
