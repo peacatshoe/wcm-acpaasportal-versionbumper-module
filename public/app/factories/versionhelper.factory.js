@@ -14,17 +14,17 @@ angular
 						patch: _.get(version, "fields.versionPatch", 0),
 					};
 				}).sort(factory.sortVersions);
-			}
+			};
 
 			factory.getMinvalueFromVersions = function(versions) {
 				var last = _.cloneDeep(_.last(versions));
 
-				return last ? _.assign(last, { patch: last.patch + 1 }) : {
+				return last || {
 					major: 0,
 					minor: 0,
 					patch: 0,
 				};
-			}
+			};
 
 			factory.sortVersions = function(a, b) {
 				var levels = ["major", "minor", "patch"];
