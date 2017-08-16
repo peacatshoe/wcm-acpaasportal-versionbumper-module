@@ -153,6 +153,8 @@ angular
 					templateUrl: acpaasportalversionbumperConfig.modulePath + "views/versionModal.tpl.html",
 					data: modalData,
 					controller: "acpaasportalversionbumperModalController",
+				}).then(function() {
+					fetchItemsForType($scope.filters.type);
 				});
 			}
 
