@@ -85,14 +85,14 @@ module.exports.create = function(req, res) {
 
 module.exports.read = function(req, res) {
 	read(contentTypesHelper().product_doc_version, {
-			"fields.product": req.params.product,
-		}, {
-			"fields.versionMajor": 1,
-			"fields.versionMinor": 1,
-			"fields.versionPatch": 1,
-		}).then(function(versions) {
-			res.status(200).json(versions);
-		}, function(err) {
-			res.status(500).json(err);
-		});
+		"fields.product": req.params.product,
+	}, {
+		"fields.versionMajor": 1,
+		"fields.versionMinor": 1,
+		"fields.versionPatch": 1,
+	}).then(function(versions) {
+		res.status(200).json(versions);
+	}, function(err) {
+		res.status(500).json(err);
+	});
 };
