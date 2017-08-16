@@ -16,7 +16,7 @@ module.exports.bump = function(req, res) {
 			return res.status(404).json({ err: "No versions available for product!" });
 		}
 
-		var versionLabel = req.body.label + " v" + [req.body.version.major, req.body.version.minor, req.body.version.patch].join(".");
+		var versionLabel = req.body.label.replace(/\sv[0-9\.]+$/, "") + " v" + [req.body.version.major, req.body.version.minor, req.body.version.patch].join(".");
 		var newVersion = {
 			fields: _.extend(_.cloneDeep(version.fields), {
 				versionMajor: req.body.version.major,

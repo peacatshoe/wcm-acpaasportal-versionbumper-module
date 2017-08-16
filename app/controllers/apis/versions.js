@@ -7,7 +7,7 @@ var contentTypesHelper = require("../../helpers/contentTypes");
 
 module.exports.bump = function(req, res) {
 	readOne(req.params.api).then(function(version) {
-		var versionLabel = req.body.label + " v" + req.body.version.major;
+		var versionLabel = req.body.label.replace(/\sv[0-9\.]+$/, "") + " v" + req.body.version.major;
 		var newVersion = {
 			fields: _.extend(_.cloneDeep(version.fields), {
 				title: versionLabel,
