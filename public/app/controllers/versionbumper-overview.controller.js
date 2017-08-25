@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.9.controllers")
+	.module("acpaasportalversionbumper_0.0.10.controllers")
 	.controller("acpaasportalversionbumperOverviewController", [
 		"$scope",
 		"$timeout",
