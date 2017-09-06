@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.10.factories")
+	.module("acpaasportalversionbumper_0.0.19.factories")
 	.factory("acpaasportalversionhelperFactory", [
 		function() {
 			var factory = {};
