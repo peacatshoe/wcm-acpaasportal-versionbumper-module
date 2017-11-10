@@ -22,7 +22,7 @@ angular
 				ncyBreadcrumb: {
 					label: "{{breadcrumb}}",
 				},
-				templateUrl: moduleFolder + "views/overview.html",
+				templateUrl: moduleFolder + "/views/overview.html",
 				controller: "acpaasportalversionbumperOverviewController",
 			});
 		},
