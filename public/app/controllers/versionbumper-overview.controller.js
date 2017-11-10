@@ -60,7 +60,7 @@ angular
 					sortable: true,
 				}, {
 					columnName: LabelService.getString("Author"),
-					key: "meta.lastEditor.user"
+					key: "meta.lastEditor.user",
 				}, {
 					columnName: LabelService.getString("Last edit"),
 					key: "meta.lastModified",
@@ -150,7 +150,7 @@ angular
 				};
 
 				DialogService.openModal({
-					templateUrl: acpaasportalversionbumperConfig.modulePath + "views/versionModal.tpl.html",
+					templateUrl: acpaasportalversionbumperConfig.modulePath + "/views/versionModal.tpl.html",
 					data: modalData,
 					controller: "acpaasportalversionbumperModalController",
 				}).then(function() {
