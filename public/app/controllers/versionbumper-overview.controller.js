@@ -150,7 +150,7 @@ angular
 				};
 
 				DialogService.openModal({
-					templateUrl: acpaasportalversionbumperConfig.modulePath + "/views/versionModal.tpl.html",
+					templateUrl: acpaasportalversionbumperConfig.modulePath + "views/versionModal.tpl.html",
 					data: modalData,
 					controller: "acpaasportalversionbumperModalController",
 				}).then(function() {

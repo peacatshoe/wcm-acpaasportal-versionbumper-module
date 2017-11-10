@@ -16,7 +16,7 @@ var init = function init() {
 			return variables;
 		})
 		.catch(function onError(responseError) {
-			console.error("Failed getting variables (eventhandler module)");
+			console.error("Failed getting variables (acpaas-versionbumber module)");
 			console.error(responseError);
 		});
 };

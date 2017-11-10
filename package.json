@@ -14,8 +14,8 @@
         "WCM"
     ],
     "wcmModule": {
-        "angularDirPath": "public/app",
-        "assetsDirPath": "public/assets",
+        "angularDirPath": "public/app/",
+        "assetsDirPath": "public/assets/",
         "cssDirPath": "public/assets/css",
         "moduleConfig": {
             "angularModule": "acpaasportalversionbumper",

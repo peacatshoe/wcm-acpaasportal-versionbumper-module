@@ -5,7 +5,7 @@ angular
 	.provider("acpaasportalversionbumperConfig", [
 		"MODULE_ENV_CONFIG",
 
-		function membersConfig(MODULE_ENV_CONFIG) {
+		function acpaasPortalVersionBumperConfig(MODULE_ENV_CONFIG) {
 			this.API = {
 				name: MODULE_ENV_CONFIG.angularModule,
 				version: "1.0.0",
