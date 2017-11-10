@@ -1,4 +1,4 @@
-var contentTypes = require("../helpers/contentTypes");
+var contentTypes = require("./helpers/contentTypes");
 var versionBumperRoutes = require("./routes/versionbumper");
 var variablesHelper = require("./helpers/variables");
 
