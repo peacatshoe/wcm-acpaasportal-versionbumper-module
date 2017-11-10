@@ -1,18 +1,18 @@
 "use strict";
 
-angular.module("acpaasportalversionbumper_0.0.19.directives", []);
-angular.module("acpaasportalversionbumper_0.0.19.factories", []);
-angular.module("acpaasportalversionbumper_0.0.19.services", ["acpaasportalversionbumper_0.0.19.factories"]);
-angular.module("acpaasportalversionbumper_0.0.19.controllers", ["acpaasportalversionbumper_0.0.19.services"]);
+angular.module("acpaasportalversionbumper_1.0.0.directives", []);
+angular.module("acpaasportalversionbumper_1.0.0.factories", []);
+angular.module("acpaasportalversionbumper_1.0.0.services", ["acpaasportalversionbumper_1.0.0.factories"]);
+angular.module("acpaasportalversionbumper_1.0.0.controllers", ["acpaasportalversionbumper_1.0.0.services"]);
 
 angular
-	.module("acpaasportalversionbumper_0.0.19", [
+	.module("acpaasportalversionbumper_1.0.0", [
 		"pelorus.services",
 
-		"acpaasportalversionbumper_0.0.19.directives",
-		"acpaasportalversionbumper_0.0.19.factories",
-		"acpaasportalversionbumper_0.0.19.services",
-		"acpaasportalversionbumper_0.0.19.controllers",
+		"acpaasportalversionbumper_1.0.0.directives",
+		"acpaasportalversionbumper_1.0.0.factories",
+		"acpaasportalversionbumper_1.0.0.services",
+		"acpaasportalversionbumper_1.0.0.controllers",
 	])
 	.run([function() {
 		console.log("Members module is available!"); // eslint-disable-line no-console
