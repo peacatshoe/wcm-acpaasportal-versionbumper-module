@@ -2,68 +2,74 @@
 	<loader loading-text="{{'Loading.' | translate}}" css="['full', 'relative']"></loader>
 </div>
 
-<div ng-if="!status.loading && status.hasVersions">
-	<field
-		class="u-width-6-6"
-		label="'Label' | translate"
-		name="version-label"
-		type="'text'"
-		model="ngDialogData.item.meta.label"
-		required="true"
-		placeholder="'Version label' | translate"
-		on-change="versionUpdated"
-	></field>
+<div ng-form name="resourceForm.modalForm" role="form">
+	<div ng-if="!status.loading && status.hasVersions">
+		<field
+			class="u-width-6-6"
+			label="'Label' | translate"
+			name="version-label"
+			type="'text'"
+			model="ngDialogData.item.meta.label"
+			field-data="resourceForm.modalForm"
+			required="true"
+			placeholder="'Version label' | translate"
+			on-change="versionUpdated"
+		></field>
 
-	<div class="acpaasportalversionbumper-modal u-clear" ng-if="ngDialogData.type.label === 'product'">
-		<field
-			class="u-width-2-6 fl"
-			label="'Major' | translate"
-			name="version-major"
-			type="'number'"
-			model="ngDialogData.version.major"
-			required="true"
-			placeholder="0"
-			minvalue="0"
-			on-change="versionUpdated"
-		></field>
-		<field
-			class="u-width-2-6 fl"
-			label="'Minor' | translate"
-			name="version-minor"
-			type="'number'"
-			model="ngDialogData.version.minor"
-			required="true"
-			placeholder="0"
-			minvalue="0"
-			on-change="versionUpdated"
-		></field>
-		<field
-			class="u-width-2-6 fl"
-			label="'Patch' | translate"
-			name="version-patch"
-			type="'number'"
-			model="ngDialogData.version.patch"
-			required="true"
-			placeholder="0"
-			minvalue="0"
-			on-change="versionUpdated"
-		></field>
+		<div class="acpaasportalversionbumper-modal u-clear" ng-if="ngDialogData.type.label === 'product'">
+			<field
+				class="u-width-2-6 fl"
+				label="'Major' | translate"
+				name="version-major"
+				type="'number'"
+				model="ngDialogData.version.major"
+				field-data="resourceForm.modalForm"
+				required="true"
+				placeholder="0"
+				minvalue="0"
+				on-change="versionUpdated"
+			></field>
+			<field
+				class="u-width-2-6 fl"
+				label="'Minor' | translate"
+				name="version-minor"
+				type="'number'"
+				model="ngDialogData.version.minor"
+				field-data="resourceForm.modalForm"
+				required="true"
+				placeholder="0"
+				minvalue="0"
+				on-change="versionUpdated"
+			></field>
+			<field
+				class="u-width-2-6 fl"
+				label="'Patch' | translate"
+				name="version-patch"
+				type="'number'"
+				model="ngDialogData.version.patch"
+				field-data="resourceForm.modalForm"
+				required="true"
+				placeholder="0"
+				minvalue="0"
+				on-change="versionUpdated"
+			></field>
+		</div>
+
+		<div class="u-clear" ng-if="ngDialogData.type.label === 'api'">
+			<field
+				class="u-width-2-6 fl"
+				label="'Version' | translate"
+				name="version"
+				type="'number'"
+				model="ngDialogData.version.major"
+				required="true"
+				placeholder="0"
+				minvalue="0"
+				on-change="versionUpdated"
+			></field>
+		</div>
+
 	</div>
-
-	<div class="u-clear" ng-if="ngDialogData.type.label === 'api'">
-		<field
-			class="u-width-2-6 fl"
-			label="'Version' | translate"
-			name="version"
-			type="'number'"
-			model="ngDialogData.version.major"
-			required="true"
-			placeholder="0"
-			minvalue="0"
-			on-change="versionUpdated"
-		></field>
-	</div>
-
 </div>
 
 <div ng-if="!status.loading && !status.hasVersions">

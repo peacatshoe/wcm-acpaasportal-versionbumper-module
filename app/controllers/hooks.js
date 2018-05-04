@@ -8,14 +8,6 @@ var onConfigurationChanged = function onConfigurationChanged() {
 	contentTypesHelper.reload();
 };
 
-var beforeRemove = function beforeRemove() {
-	console.log("before remove");
-};
-
-var beforeDisable = function beforeDisable() {
-	console.log("before disable");
-};
-
 var onLoadComplete = function onLoadComplete() {
 	console.log("onLoadComplete");
 	onConfigurationChanged();
@@ -24,9 +16,7 @@ var onLoadComplete = function onLoadComplete() {
 module.exports = function handleHooks(hooks) {
 	var myHooks = {
 		onConfigurationChanged: onConfigurationChanged,
-		beforeRemove: beforeRemove,
 		onLoadComplete: onLoadComplete,
-		beforeDisable: beforeDisable,
 	};
 
 	Object.assign(hooks, myHooks);

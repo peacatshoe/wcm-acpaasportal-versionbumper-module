@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.10.controllers")
+	.module("acpaasportalversionbumper_1.0.2.controllers")
 	.controller("acpaasportalversionbumperModalController", [
 		"$scope",
 		"$timeout",
@@ -28,6 +28,7 @@ angular
 				valid: false,
 				hasVersions: false,
 			};
+			$scope.resourceForm = {};
 			$scope.versions = [];
 
 			function init() {
@@ -63,7 +64,34 @@ angular
 				});
 			}
 
+			function checkFormValidity() {
+				if ((
+					$scope.ngDialogData.type.label === "product" &&
+					$scope.ngDialogData.version.major >= 0 &&
+					$scope.ngDialogData.version.minor >= 0 &&
+					$scope.ngDialogData.version.patch >= 0
+				) || (
+					$scope.ngDialogData.type.label === "api" &&
+					$scope.ngDialogData.version.major >= 0
+				)) {
+					return true;
+				}
+
+				NotificationService.showNotification(
+					LabelService.getString("Invalid version! Please make sure the versions are valid"),
+					"top",
+					"error",
+					7000
+				);
+
+				return false;
+			}
+
 			function newVersion() {
+				if (!checkFormValidity()) {
+					return;
+				}
+
 				$scope.status.loading = true;
 
 				acpaasportalversionbumperFactory.newVersion({
@@ -79,6 +107,10 @@ angular
 			}
 
 			function bumpVersion() {
+				if (!checkFormValidity()) {
+					return;
+				}
+
 				$scope.status.loading = true;
 
 				acpaasportalversionbumperFactory.bumpVersion({
