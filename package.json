@@ -1,6 +1,6 @@
 {
     "name": "acpaasportalversionbumper",
-    "version": "0.0.1",
+    "version": "0.0.10",
     "description": "Version bumper module for AcPaaS Portal",
     "main": "app/routes/index.js",
     "scripts": {
@@ -13,6 +13,8 @@
     "wcmModule": {
         "frontend": {
             "dirPath": "public/app/",
+            "assetsDirPath": "public/assets",
+            "cssDirPath": "public/assets/css",
             "moduleConfig": {
                 "translationKey": "Version bumper",
                 "operationType": "versionbumper",

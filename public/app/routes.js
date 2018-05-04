@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.1")
+	.module("acpaasportalversionbumper_0.0.10")
 	.config([
 		"$stateProvider",
 		"acpaasportalversionbumperConfigProvider",

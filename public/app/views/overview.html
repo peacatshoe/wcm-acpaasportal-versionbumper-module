@@ -1,16 +1,35 @@
 <div class="content--inner">
-	<h1 class="c-page-title u-margin-bottom" translate>Search</h1>
+	<h1 class="c-page-title" translate>Version Bumper</h1>
 
-	<div class="u-margin-bottom">
-		<h3 class="page-section-title h3-structure u-margin-bottom" translate>Reindex search</h3>
-		<p translate>Clear the search and reindex all items.</p>
+	<div class="d01-table-filter clearfix u-margin-bottom">
+		<div class="d01-table-filter-field">
+			<div class="c-input_inner has-icon caret-down">
+				<label class="c-label" for="status-${{index}}" translate>Content type</label>
+				<div class="select-wrapper">
+					<select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="filters.type" required="true" ng-options="type as type.label for type in types track by type.id" ng-change="fetchItemsForType(filters.type)" ng-disabled="loading.table">
+						<option disabled value="">Choose a content type
+					</select>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="u-margin--bottom clearfix" data-ng-if="reindexing" style="height: 100px">
-		<loader loading-text="{{'Indexing.' | translate}}" css="['full', 'relative']"></loader>
-	</div>
+	<div ng-if="filters.type">
+		<div class="d01-table-filter clearfix" ng-if="!loading.table">
+			<div class="d01-table-filter-field">
+				<label translate>Search:</label>
+				<input placeholder="Search" class="c-input-text c-input-text--sm" type="text" ng-model="filters.searchQuery" ng-model-options="searchFieldOptions" ng-change="searchItems(filters.type)">
+			</div>
+		</div>
 
-	<div class="c-buttonGroup">
-		<button class="c-button c-button--alpha c-button--md" data-ng-click="reindexSearch()" data-ng-disabled="reindexing">Reindex search</button>
+		<div class="clearfix" ng-if="loading.table || loading.search" style="height: 100px;">
+			<loader loading-text="{{'Loading.' | translate}}" css="['full', 'relative']"></loader>
+		</div>
+
+		<d01-table ng-show="!loading.table && !loading.search && tableData.length > 0" source="tableData" config="tableConfig"></d01-table>
+
+		<div class="clearfix" ng-if="!loading.table && tableData.length == 0" translate>
+			No {{filters.type.label}}s found
+		</div>
 	</div>
 </div>
