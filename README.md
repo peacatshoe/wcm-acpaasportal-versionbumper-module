@@ -1,6 +1,6 @@
 # wcm-acpaasportal-versionbumper-module
 
-This module gives you the opportunity to create new product versions in acpaas portal.
+This module gives you the opportunity to create new product versions in the acpaas portal website.
 
 ## Prerequisites
  - A running implementation of the Pelorus CMS is needed either locally or on a server.
@@ -14,14 +14,6 @@ This module gives you the opportunity to create new product versions in acpaas p
 2. Run "npm install" in the main folder directory.
 3. Run "gulp build" in the main folder directory.
 4. Upload the zip created by previous steps (located in the "dist" folder).
-
-## Usage
-
-### API
-...
-
-### Implementation
-...
 
 ## Module development
 
