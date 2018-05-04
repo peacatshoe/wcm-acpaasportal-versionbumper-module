@@ -1,7 +1,4 @@
-"use strict";
-
 require("rootpath")();
-var _ = require("lodash");
 
 var ContentTypeModel = require("app/models/contentType");
 
@@ -44,6 +41,10 @@ module.exports.reload = function reload() {
 		});
 };
 
+var toList = module.exports.toList = function() {
+	return list;
+};
+
 module.exports.verifyType = function verifyType(type) {
 	type = typeof type === "string" ? type : type._id;
 
@@ -52,6 +53,3 @@ module.exports.verifyType = function verifyType(type) {
 	});
 };
 
-module.exports.toList = function() {
-	return list;
-};

@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.10.controllers")
+	.module("acpaasportalversionbumper_1.0.2.controllers")
 	.controller("acpaasportalversionbumperOverviewController", [
 		"$scope",
 		"$timeout",
@@ -60,7 +60,7 @@ angular
 					sortable: true,
 				}, {
 					columnName: LabelService.getString("Author"),
-					key: "meta.lastEditor.user"
+					key: "meta.lastEditor.user",
 				}, {
 					columnName: LabelService.getString("Last edit"),
 					key: "meta.lastModified",

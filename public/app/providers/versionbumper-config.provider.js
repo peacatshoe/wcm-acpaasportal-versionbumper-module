@@ -1,16 +1,20 @@
 "use strict";
 
 angular
-	.module("acpaasportalversionbumper_0.0.10")
+	.module("acpaasportalversionbumper_1.0.2")
 	.provider("acpaasportalversionbumperConfig", [
-		function membersConfig() {
+		"MODULE_ENV_CONFIG",
+
+		function acpaasPortalVersionBumperConfig(MODULE_ENV_CONFIG) {
 			this.API = {
-				name: "acpaasportalversionbumper",
-				version: "0.0.10",
-				basePath: "app/modules/",
+				name: MODULE_ENV_CONFIG.angularModule,
+				version: "1.0.2",
+				feDirPath: MODULE_ENV_CONFIG.feDirPath,
+				assetsDirPath: MODULE_ENV_CONFIG.assetsDirPath,
+				cssDirPath: MODULE_ENV_CONFIG.cssDirPath,
 			};
 
-			this.API.modulePath = this.API.basePath + this.API.name + "_" + this.API.version + "/";
+			this.API.modulePath = this.API.feDirPath;
 
 			this.$get = function get() {
 				return this.API;
